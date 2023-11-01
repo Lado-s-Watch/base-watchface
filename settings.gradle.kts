@@ -1,3 +1,4 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
     repositories {
         google()
@@ -11,9 +12,15 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+    versionCatalogs {
+        create("libs") {
+            files("../gradle/libs.versions.toml")
+        }
+    }
 }
 
-rootProject.name = "BaseWatchface"
+rootProject.name = "Watchface"
 include(":mobile")
 include(":wear")
- 
+include(":core:common")
+include(":core:ui")
