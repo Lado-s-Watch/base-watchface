@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dotsdev.basewatchface.presentation.alpha.editor
+package com.dotsdev.basewatchface.wearwatchface.configuration
 
 import android.os.Bundle
 import android.util.Log
@@ -21,7 +21,7 @@ import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.lifecycle.lifecycleScope
-import com.dotsdev.basewatchface.presentation.alpha.data.watchface.ColorStyleIdAndResourceIds
+import com.dotsdev.basewatchface.wearwatchface.data.ColorStyleIdAndResourceIds
 import com.example.android.wearable.alpha.utils.LEFT_COMPLICATION_ID
 import com.example.android.wearable.alpha.utils.RIGHT_COMPLICATION_ID
 import kotlinx.coroutines.Dispatchers

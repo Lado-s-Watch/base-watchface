@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dotsdev.basewatchface.presentation.alpha.data.watchface
+package com.dotsdev.basewatchface.wearwatchface.data
 
 import android.content.Context
 import androidx.annotation.DrawableRes

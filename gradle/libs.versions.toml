@@ -44,6 +44,8 @@ androidxLifecycleProcess = "2.6.2"
 androidx-wear-compose = "1.1.0-rc01"
 androidx-wear-tiles = "1.1.0"
 androidx-wear-watchface = "1.1.1"
+material = "1.10.0"
+org-jetbrains-kotlin-jvm = "1.8.10"
 
 [libraries]
 androidGradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -165,6 +167,7 @@ roborazziCompose = { module = "io.github.takahirom.roborazzi:roborazzi-compose",
 roborazziRule = { module = "io.github.takahirom.roborazzi:roborazzi-junit-rule", version.ref = "roborazzi" }
 showkaseRuntime = { group = "com.airbnb.android", name = "showkase", version.ref = "showkase" }
 showkaseProcessor = { group = "com.airbnb.android", name = "showkase-processor", version.ref = "showkase" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 androidGradlePlugin = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -176,6 +179,7 @@ kspGradlePlugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinxKover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 detektGradlePlugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ossLicensesPlugin = { id = "com.google.android.gms.oss-licenses-plugin", version.ref = "ossLicensesPlugin" }
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 
 [bundles]
 plugins = [

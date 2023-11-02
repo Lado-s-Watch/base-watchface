@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dotsdev.basewatchface.presentation.alpha.editor
+package com.dotsdev.basewatchface.wearwatchface.configuration
 
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -27,9 +27,9 @@ import androidx.wear.watchface.style.UserStyle
 import androidx.wear.watchface.style.UserStyleSchema
 import androidx.wear.watchface.style.UserStyleSetting
 import androidx.wear.watchface.style.WatchFaceLayer
-import com.dotsdev.basewatchface.presentation.alpha.data.watchface.MINUTE_HAND_LENGTH_FRACTION_DEFAULT
-import com.dotsdev.basewatchface.presentation.alpha.data.watchface.MINUTE_HAND_LENGTH_FRACTION_MAXIMUM
-import com.dotsdev.basewatchface.presentation.alpha.data.watchface.MINUTE_HAND_LENGTH_FRACTION_MINIMUM
+import com.dotsdev.basewatchface.wearwatchface.data.MINUTE_HAND_LENGTH_FRACTION_DEFAULT
+import com.dotsdev.basewatchface.wearwatchface.data.MINUTE_HAND_LENGTH_FRACTION_MAXIMUM
+import com.dotsdev.basewatchface.wearwatchface.data.MINUTE_HAND_LENGTH_FRACTION_MINIMUM
 import com.example.android.wearable.alpha.utils.COLOR_STYLE_SETTING
 import com.example.android.wearable.alpha.utils.DRAW_HOUR_PIPS_STYLE_SETTING
 import com.example.android.wearable.alpha.utils.LEFT_COMPLICATION_ID
