@@ -7,13 +7,13 @@ kotlin = "1.9.0"
 
 androidxCore = "1.12.0"
 androidDesugarJdkLibs = "2.0.3"
-compose = "2023.09.00"
+compose = "2023.10.01"
 composeCompiler = "1.5.2"
 composeJb = "1.5.0"
-composeMaterial3 = "1.2.0-alpha07"
+composeMaterial3 = "1.2.0-alpha10"
 composeHiltNavigatiaon = "1.0.0"
 androidxLifecycle = "2.6.2"
-androidxActivity = "1.8.0-beta01"
+androidxActivity = "1.8.0"
 androidxFragment = "1.6.1"
 androidxSplashScreen = "1.0.1"
 kotlinxCoroutines = "1.7.3"
@@ -39,9 +39,9 @@ ossLicenses = "17.0.1"
 detekt = "1.23.1"
 twitterComposeRule = "0.0.26"
 lottie = "6.1.0"
-kover = "0.7.3"
+kover = "0.7.4"
 androidxLifecycleProcess = "2.6.2"
-androidx-wear-compose = "1.1.0-rc01"
+androidx-wear-compose = "1.2.1"
 androidx-wear-tiles = "1.1.0"
 androidx-wear-watchface = "1.1.1"
 material = "1.10.0"
@@ -71,6 +71,9 @@ wear-watchface-complications-rendering = { module = "androidx.wear.watchface:wat
 wear-watchface-data = { module = "androidx.wear.watchface:watchface-data", version.ref = "androidx-wear-watchface" }
 wear-watchface-editor = { module = "androidx.wear.watchface:watchface-editor", version.ref = "androidx-wear-watchface" }
 wear-watchface-style = { module = "androidx.wear.watchface:watchface-style", version.ref = "androidx-wear-watchface" }
+wear-compose-material = { module = "androidx.wear.compose:compose-material", version.ref = "androidx-wear-compose" }
+wear-compose-foundation = { module = "androidx.wear.compose:compose-foundation", version.ref = "androidx-wear-compose" }
+gms-service-wearable = { module = "com.google.android.gms:play-services-wearable" }
 
 androidDesugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 

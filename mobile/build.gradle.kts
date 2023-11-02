@@ -1,16 +1,20 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id("basewatchface.primitive.androidapplication")
+    id("basewatchface.primitive.android.kotlin")
+    id("basewatchface.primitive.android.compose")
+    id("basewatchface.primitive.android.hilt")
+    id("basewatchface.primitive.android.firebase")
+    id("basewatchface.primitive.android.crashlytics")
+    id("basewatchface.primitive.detekt")
+    id("basewatchface.primitive.android.roborazzi")
+    id("basewatchface.primitive.android.osslicenses")
 }
 
 android {
     namespace = "com.dotsdev.basewatchface"
-    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.dotsdev.basewatchface"
-        minSdk = 30
-        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -26,23 +30,16 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.gms:play-services-wearable:18.1.0")
+    implementation(libs.androidxCoreKtx)
+    implementation(libs.androidxAppCompat)
+    implementation(libs.gms.service.wearable)
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidxTestExtJunit)
+    androidTestImplementation(libs.androidxTestEspressoEspressoCore)
     wearApp(project(":wear"))
 }
