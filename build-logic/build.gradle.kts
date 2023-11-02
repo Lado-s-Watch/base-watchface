@@ -45,6 +45,10 @@ gradlePlugin {
             id = "basewatchface.primitive.android.compose"
             implementationClass = "com.dotsdev.basewatchface.primitive.AndroidComposePlugin"
         }
+        register("androidWear") {
+            id = "basewatchface.primitive.android.wear"
+            implementationClass = "com.dotsdev.basewatchface.primitive.WearApplicationPlugin"
+        }
         register("androidHilt") {
             id = "basewatchface.primitive.android.hilt"
             implementationClass = "com.dotsdev.basewatchface.primitive.AndroidHiltPlugin"

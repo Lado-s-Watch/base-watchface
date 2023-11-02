@@ -1,3 +1,4 @@
+@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     id("basewatchface.primitive.androidapplication")
     id("basewatchface.primitive.android.kotlin")
@@ -5,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.dotsdev.basewatchface.ui"
+    namespace = "com.dotsdev.basewatchface.preview"
 
     buildTypes {
         release {
@@ -19,7 +20,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.preview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidxTestExtJunit)
     androidTestImplementation(libs.androidxTestEspressoEspressoCore)
