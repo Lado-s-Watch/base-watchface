@@ -46,6 +46,7 @@ androidx-wear-tiles = "1.1.0"
 androidx-wear-watchface = "1.1.1"
 material = "1.10.0"
 org-jetbrains-kotlin-jvm = "1.8.10"
+playServicesWearable = "18.1.0"
 
 [libraries]
 androidGradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -73,7 +74,8 @@ wear-watchface-editor = { module = "androidx.wear.watchface:watchface-editor", v
 wear-watchface-style = { module = "androidx.wear.watchface:watchface-style", version.ref = "androidx-wear-watchface" }
 wear-compose-material = { module = "androidx.wear.compose:compose-material", version.ref = "androidx-wear-compose" }
 wear-compose-foundation = { module = "androidx.wear.compose:compose-foundation", version.ref = "androidx-wear-compose" }
-gms-service-wearable = { module = "com.google.android.gms:play-services-wearable" }
+wear-compose-ui-tooling = { module = "androidx.wear.compose:compose-ui-tooling", version.ref = "androidx-wear-compose" }
+gms-service-wearable = { module = "com.google.android.gms:play-services-wearable", version.ref = "playServicesWearable" }
 
 androidDesugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 

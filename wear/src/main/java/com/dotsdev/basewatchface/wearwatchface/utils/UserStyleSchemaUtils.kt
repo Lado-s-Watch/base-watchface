@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.wearable.alpha.utils
+package com.dotsdev.basewatchface.wearwatchface.utils
 
 import android.content.Context
 import androidx.wear.watchface.style.UserStyleSchema
 import androidx.wear.watchface.style.UserStyleSetting
 import androidx.wear.watchface.style.WatchFaceLayer
-import com.example.android.wearable.alpha.R
+import com.dotsdev.basewatchface.ui.R
 import com.dotsdev.basewatchface.wearwatchface.data.ColorStyleIdAndResourceIds
 import com.dotsdev.basewatchface.wearwatchface.data.DRAW_HOUR_PIPS_DEFAULT
 import com.dotsdev.basewatchface.wearwatchface.data.MINUTE_HAND_LENGTH_FRACTION_DEFAULT

@@ -1,6 +1,10 @@
 package com.dotsdev.basewatchface.preview
 
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
+import androidx.wear.compose.ui.tooling.preview.WearPreviewLargeRound
+import androidx.wear.compose.ui.tooling.preview.WearPreviewSmallRound
+import androidx.wear.compose.ui.tooling.preview.WearPreviewSquare
 
 @Retention(AnnotationRetention.SOURCE)
 @Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION)
@@ -34,3 +38,10 @@ object MultiLanguagePreviewDefinition {
     locale = MultiLanguagePreviewDefinition.English.Language,
 )
 annotation class MultiLanguagePreviews
+
+@WearPreviewSquare
+@WearPreviewLargeRound
+@WearPreviewSmallRound
+@WearPreviewDevices
+@MultiLanguagePreviews
+annotation class MultiLanguageWearPreview

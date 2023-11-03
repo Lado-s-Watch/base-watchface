@@ -22,8 +22,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.lifecycle.lifecycleScope
 import com.dotsdev.basewatchface.wearwatchface.data.ColorStyleIdAndResourceIds
-import com.example.android.wearable.alpha.utils.LEFT_COMPLICATION_ID
-import com.example.android.wearable.alpha.utils.RIGHT_COMPLICATION_ID
+import com.dotsdev.basewatchface.wearwatchface.utils.LEFT_COMPLICATION_ID
+import com.dotsdev.basewatchface.wearwatchface.utils.RIGHT_COMPLICATION_ID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
