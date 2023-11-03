@@ -23,9 +23,9 @@ import com.dotsdev.basewatchface.ui.R
 import com.dotsdev.basewatchface.wearwatchface.data.ColorStyleIdAndResourceIds
 import com.dotsdev.basewatchface.wearwatchface.data.WatchFaceColorPalette
 import com.dotsdev.basewatchface.wearwatchface.data.WatchFaceData
-import com.example.android.wearable.alpha.utils.COLOR_STYLE_SETTING
-import com.example.android.wearable.alpha.utils.DRAW_HOUR_PIPS_STYLE_SETTING
-import com.example.android.wearable.alpha.utils.WATCH_HAND_LENGTH_STYLE_SETTING
+import com.dotsdev.basewatchface.wearwatchface.utils.COLOR_STYLE_SETTING
+import com.dotsdev.basewatchface.wearwatchface.utils.DRAW_HOUR_PIPS_STYLE_SETTING
+import com.dotsdev.basewatchface.wearwatchface.utils.WATCH_HAND_LENGTH_STYLE_SETTING
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.wearable.alpha.utils
+package com.dotsdev.basewatchface.wearwatchface.utils
 
 import android.content.Context
 import android.graphics.RectF
@@ -27,7 +27,7 @@ import androidx.wear.watchface.complications.data.ComplicationType
 import androidx.wear.watchface.complications.rendering.CanvasComplicationDrawable
 import androidx.wear.watchface.complications.rendering.ComplicationDrawable
 import androidx.wear.watchface.style.CurrentUserStyleRepository
-import com.example.android.wearable.alpha.R
+import com.dotsdev.basewatchface.ui.R
 
 // Information needed for complications.
 // Creates bounds for the locations of both right and left complications. (This is the
@@ -53,7 +53,7 @@ internal const val RIGHT_COMPLICATION_ID = 101
  * Represents the unique id associated with a complication and the complication types it supports.
  */
 sealed class ComplicationConfig(val id: Int, val supportedTypes: List<ComplicationType>) {
-    object Left : ComplicationConfig(
+    data object Left : ComplicationConfig(
         LEFT_COMPLICATION_ID,
         listOf(
             ComplicationType.RANGED_VALUE,
@@ -63,7 +63,7 @@ sealed class ComplicationConfig(val id: Int, val supportedTypes: List<Complicati
         )
     )
 
-    object Right : ComplicationConfig(
+    data object Right : ComplicationConfig(
         RIGHT_COMPLICATION_ID,
         listOf(
             ComplicationType.RANGED_VALUE,

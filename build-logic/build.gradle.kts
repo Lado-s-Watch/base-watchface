@@ -37,6 +37,10 @@ gradlePlugin {
             id = "basewatchface.primitive.android"
             implementationClass = "com.dotsdev.basewatchface.primitive.AndroidPlugin"
         }
+        register("androidLibrary") {
+            id = "basewatchface.primitive.android.library"
+            implementationClass = "com.dotsdev.basewatchface.primitive.AndroidLibraryConventionPlugin"
+        }
         register("androidKotlin") {
             id = "basewatchface.primitive.android.kotlin"
             implementationClass = "com.dotsdev.basewatchface.primitive.AndroidKotlinPlugin"

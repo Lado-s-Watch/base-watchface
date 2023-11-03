@@ -30,11 +30,11 @@ import androidx.wear.watchface.style.WatchFaceLayer
 import com.dotsdev.basewatchface.wearwatchface.data.MINUTE_HAND_LENGTH_FRACTION_DEFAULT
 import com.dotsdev.basewatchface.wearwatchface.data.MINUTE_HAND_LENGTH_FRACTION_MAXIMUM
 import com.dotsdev.basewatchface.wearwatchface.data.MINUTE_HAND_LENGTH_FRACTION_MINIMUM
-import com.example.android.wearable.alpha.utils.COLOR_STYLE_SETTING
-import com.example.android.wearable.alpha.utils.DRAW_HOUR_PIPS_STYLE_SETTING
-import com.example.android.wearable.alpha.utils.LEFT_COMPLICATION_ID
-import com.example.android.wearable.alpha.utils.RIGHT_COMPLICATION_ID
-import com.example.android.wearable.alpha.utils.WATCH_HAND_LENGTH_STYLE_SETTING
+import com.dotsdev.basewatchface.wearwatchface.utils.COLOR_STYLE_SETTING
+import com.dotsdev.basewatchface.wearwatchface.utils.DRAW_HOUR_PIPS_STYLE_SETTING
+import com.dotsdev.basewatchface.wearwatchface.utils.LEFT_COMPLICATION_ID
+import com.dotsdev.basewatchface.wearwatchface.utils.RIGHT_COMPLICATION_ID
+import com.dotsdev.basewatchface.wearwatchface.utils.WATCH_HAND_LENGTH_STYLE_SETTING
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
