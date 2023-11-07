@@ -20,6 +20,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidxTestExtJunit)
     androidTestImplementation(libs.androidxTestEspressoEspressoCore)

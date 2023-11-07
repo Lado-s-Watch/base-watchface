@@ -3,8 +3,6 @@ plugins {
     id("basewatchface.primitive.android.kotlin")
     id("basewatchface.primitive.android.compose")
     id("basewatchface.primitive.android.hilt")
-    id("basewatchface.primitive.android.firebase")
-    id("basewatchface.primitive.android.crashlytics")
     id("basewatchface.primitive.detekt")
     id("basewatchface.primitive.android.roborazzi")
     id("basewatchface.primitive.android.osslicenses")

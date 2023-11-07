@@ -1,4 +1,4 @@
-package com.dotsdev.basewatchface.ui.wear.ext
+package com.dotsdev.basewatchface.ui.wear.utils.extensions
 
 import android.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
