@@ -68,11 +68,10 @@ class AnalogWatchCanvasRenderer(
     // three values are changeable by the user (color scheme, ticks being rendered, and length of
     // the minute arm). Those dynamic values are saved in the watch face APIs and we update those
     // here (in the renderer) through a Kotlin Flow.
-    private var watchFaceData: com.dotsdev.basewatchface.ui.wear.data.WatchFaceData =
-        com.dotsdev.basewatchface.ui.wear.data.WatchFaceData()
+    private var watchFaceData: WatchFaceData = WatchFaceData()
 
     // Converts resource ids into Colors and ComplicationDrawable.
-    private var watchFaceColors = com.dotsdev.basewatchface.ui.wear.data.WatchFaceColorPalette.convertToWatchFaceColorPalette(
+    private var watchFaceColors = WatchFaceColorPalette.convertToWatchFaceColorPalette(
         context,
         watchFaceData.activeColorStyle,
         watchFaceData.ambientColorStyle
@@ -128,22 +127,22 @@ class AnalogWatchCanvasRenderer(
     private fun updateWatchFaceData(userStyle: UserStyle) {
         Log.d(TAG, "updateWatchFace(): $userStyle")
 
-        var newWatchFaceData: com.dotsdev.basewatchface.ui.wear.data.WatchFaceData = watchFaceData
+        var newWatchFaceData: WatchFaceData = watchFaceData
 
         // Loops through user style and applies new values to watchFaceData.
         for (options in userStyle) {
             when (options.key.id.toString()) {
-                com.dotsdev.basewatchface.ui.wear.utils.COLOR_STYLE_SETTING -> {
+                COLOR_STYLE_SETTING -> {
                     val listOption = options.value as
                             UserStyleSetting.ListUserStyleSetting.ListOption
 
                     newWatchFaceData = newWatchFaceData.copy(
-                        activeColorStyle = com.dotsdev.basewatchface.ui.wear.data.ColorStyleIdAndResourceIds.getColorStyleConfig(
+                        activeColorStyle = ColorStyleIdAndResourceIds.getColorStyleConfig(
                             listOption.id.toString()
                         )
                     )
                 }
-                com.dotsdev.basewatchface.ui.wear.utils.DRAW_HOUR_PIPS_STYLE_SETTING -> {
+                DRAW_HOUR_PIPS_STYLE_SETTING -> {
                     val booleanValue = options.value as
                             UserStyleSetting.BooleanUserStyleSetting.BooleanOption
 
@@ -151,7 +150,7 @@ class AnalogWatchCanvasRenderer(
                         drawHourPips = booleanValue.value
                     )
                 }
-                com.dotsdev.basewatchface.ui.wear.utils.WATCH_HAND_LENGTH_STYLE_SETTING -> {
+                WATCH_HAND_LENGTH_STYLE_SETTING -> {
                     val doubleValue = options.value as
                             UserStyleSetting.DoubleRangeUserStyleSetting.DoubleRangeOption
 
@@ -177,7 +176,7 @@ class AnalogWatchCanvasRenderer(
             watchFaceData = newWatchFaceData
 
             // Recreates Color and ComplicationDrawable from resource ids.
-            watchFaceColors = com.dotsdev.basewatchface.ui.wear.data.WatchFaceColorPalette.convertToWatchFaceColorPalette(
+            watchFaceColors = WatchFaceColorPalette.convertToWatchFaceColorPalette(
                 context,
                 watchFaceData.activeColorStyle,
                 watchFaceData.ambientColorStyle

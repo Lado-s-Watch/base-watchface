@@ -38,7 +38,7 @@ const val WATCH_HAND_LENGTH_STYLE_SETTING = "watch_hand_length_style_setting"
  * edit different parts of the watch face. In the renderer (after something has changed), the
  * watch face listens for a flow from the watch face API data layer and updates the watch face.
  */
-fun createUserStyleSchema(context: Context): UserStyleSchema {
+fun createUserStylesSchema(context: Context): UserStyleSchema {
     // 1. Allows user to change the color styles of the watch face (if any are available).
     val colorStyleSetting =
         UserStyleSetting.ListUserStyleSetting(
