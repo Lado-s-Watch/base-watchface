@@ -23,7 +23,6 @@ dependencyResolutionManagement {
 rootProject.name = "Watchface"
 include(":mobile")
 include(":wear")
-include(":core:common")
 include(":core:ui")
 include(":core:preview")
 include(":core:ui-wear")

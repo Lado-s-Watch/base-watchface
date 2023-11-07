@@ -10,11 +10,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.wear.watchface.editor.EditorSession
-import com.dotsdev.basewatchface.ui.wear.ext.createWatchFacePreview
-import com.dotsdev.basewatchface.ui.wear.ext.getColorStyle
-import com.dotsdev.basewatchface.ui.wear.ext.getMinuteHandStyle
-import com.dotsdev.basewatchface.ui.wear.ext.getShowComplicationsInAmbient
-import com.dotsdev.basewatchface.ui.wear.ext.getTickEnabledStyle
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.createWatchFacePreview
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.getColorStyle
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.getMinuteHandStyle
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.getShowComplicationsInAmbient
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.getTickEnabledStyle
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.combine

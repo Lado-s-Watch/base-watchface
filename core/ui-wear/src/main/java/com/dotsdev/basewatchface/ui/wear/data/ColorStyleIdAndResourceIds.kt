@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dotsdev.basewatchface.wearwatchface.data
+package com.dotsdev.basewatchface.ui.wear.data
 
 import android.content.Context
 import android.graphics.drawable.Icon

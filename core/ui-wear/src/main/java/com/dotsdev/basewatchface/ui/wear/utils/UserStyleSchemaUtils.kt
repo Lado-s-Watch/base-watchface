@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dotsdev.basewatchface.wearwatchface.utils
+package com.dotsdev.basewatchface.ui.wear.utils
 
 import android.content.Context
 import androidx.wear.watchface.style.UserStyleSchema
 import androidx.wear.watchface.style.UserStyleSetting
 import androidx.wear.watchface.style.WatchFaceLayer
 import com.dotsdev.basewatchface.ui.R
-import com.dotsdev.basewatchface.wearwatchface.data.ColorStyleIdAndResourceIds
-import com.dotsdev.basewatchface.wearwatchface.data.DRAW_HOUR_PIPS_DEFAULT
-import com.dotsdev.basewatchface.wearwatchface.data.MINUTE_HAND_LENGTH_FRACTION_DEFAULT
-import com.dotsdev.basewatchface.wearwatchface.data.MINUTE_HAND_LENGTH_FRACTION_MAXIMUM
-import com.dotsdev.basewatchface.wearwatchface.data.MINUTE_HAND_LENGTH_FRACTION_MINIMUM
+import com.dotsdev.basewatchface.ui.wear.data.ColorStyleIdAndResourceIds
+import com.dotsdev.basewatchface.ui.wear.data.DRAW_HOUR_PIPS_DEFAULT
+import com.dotsdev.basewatchface.ui.wear.data.MINUTE_HAND_LENGTH_FRACTION_DEFAULT
+import com.dotsdev.basewatchface.ui.wear.data.MINUTE_HAND_LENGTH_FRACTION_MAXIMUM
+import com.dotsdev.basewatchface.ui.wear.data.MINUTE_HAND_LENGTH_FRACTION_MINIMUM
 
 // Keys to matched content in the  the user style settings. We listen for changes to these
 // values in the renderer and if new, we will update the database and update the watch face

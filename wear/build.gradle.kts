@@ -32,6 +32,7 @@ android {
 
 dependencies {
     implementation(projects.core.ui)
+    implementation(projects.core.uiWear)
     implementation(projects.core.preview)
     implementation(libs.androidxActivityActivityCompose)
     implementation(libs.androidxLifecycleLifecycleRuntimeKtx)
