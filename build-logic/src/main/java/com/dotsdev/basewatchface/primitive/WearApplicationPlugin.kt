@@ -27,6 +27,7 @@ class WearApplicationPlugin: Plugin<Project> {
                 implementation(libs.library("wear-watchface-editor"))
                 implementation(libs.library("wear-watchface-style"))
                 implementation(libs.library("wear-compose-ui-tooling"))
+                implementation(libs.library("wear-compose-navigation"))
             }
         }
     }

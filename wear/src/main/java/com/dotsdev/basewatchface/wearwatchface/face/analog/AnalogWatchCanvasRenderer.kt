@@ -20,9 +20,9 @@ import androidx.wear.watchface.style.UserStyle
 import androidx.wear.watchface.style.UserStyleSetting
 import androidx.wear.watchface.style.WatchFaceLayer
 import com.dotsdev.basewatchface.ui.R
-import com.dotsdev.basewatchface.ui.wear.data.ColorStyleIdAndResourceIds
-import com.dotsdev.basewatchface.ui.wear.data.WatchFaceColorPalette
-import com.dotsdev.basewatchface.ui.wear.data.WatchFaceData
+import com.dotsdev.basewatchface.ui.wear.resources.ColorStyleIdAndResourceIds
+import com.dotsdev.basewatchface.ui.wear.resources.WatchFaceColorPalette
+import com.dotsdev.basewatchface.ui.wear.resources.WatchFaceData
 import com.dotsdev.basewatchface.ui.wear.utils.COLOR_STYLE_SETTING
 import com.dotsdev.basewatchface.ui.wear.utils.DRAW_HOUR_PIPS_STYLE_SETTING
 import com.dotsdev.basewatchface.ui.wear.utils.WATCH_HAND_LENGTH_STYLE_SETTING

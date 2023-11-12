@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dotsdev.basewatchface.ui.wear.data
+package com.dotsdev.basewatchface.ui.wear.resources
 
 // Defaults for the watch face. All private values aren't editable by the user, so they don't need
 // to be exposed as settings defaults.
