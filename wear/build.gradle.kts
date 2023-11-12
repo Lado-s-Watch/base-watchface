@@ -34,6 +34,7 @@ dependencies {
     implementation(projects.core.ui)
     implementation(projects.core.uiWear)
     implementation(projects.core.preview)
+    implementation(projects.featureWear)
     implementation(libs.androidxActivityActivityCompose)
     implementation(libs.androidxLifecycleLifecycleRuntimeKtx)
     implementation(libs.gms.service.wearable)
