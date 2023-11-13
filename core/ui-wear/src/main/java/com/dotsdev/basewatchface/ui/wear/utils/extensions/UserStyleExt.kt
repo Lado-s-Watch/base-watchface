@@ -12,11 +12,15 @@ import androidx.wear.watchface.style.UserStyle
 import androidx.wear.watchface.style.UserStyleSchema
 import androidx.wear.watchface.style.UserStyleSetting
 import androidx.wear.watchface.style.WatchFaceLayer
+import com.dotsdev.basewatchface.ui.wear.utils.COLOR_STYLE_SETTING
+import com.dotsdev.basewatchface.ui.wear.utils.DRAW_HOUR_PIPS_STYLE_SETTING
+import com.dotsdev.basewatchface.ui.wear.utils.SHOW_COMPLICATIONS_IN_AMBIENT_STYLE_SETTING
+import com.dotsdev.basewatchface.ui.wear.utils.WATCH_HAND_LENGTH_STYLE_SETTING
 
 context(UserStyleSchema)
 @OptIn(ExperimentalHierarchicalStyle::class)
 fun UserStyle.getShowComplicationsInAmbient(): Boolean {
-    val id = UserStyleSetting.Id("show_complications_in_ambient")
+    val id = UserStyleSetting.Id(SHOW_COMPLICATIONS_IN_AMBIENT_STYLE_SETTING)
     val showComplicationsInAmbientSetting = rootUserStyleSettings.find { it.id == id }
             as UserStyleSetting.BooleanUserStyleSetting
     return (this[showComplicationsInAmbientSetting]
@@ -26,7 +30,7 @@ fun UserStyle.getShowComplicationsInAmbient(): Boolean {
 context(UserStyleSchema)
 @OptIn(ExperimentalHierarchicalStyle::class)
 fun UserStyle.getColorStyle(): String {
-    val id = UserStyleSetting.Id("color_style")
+    val id = UserStyleSetting.Id(COLOR_STYLE_SETTING)
     val colorStyleSetting = rootUserStyleSettings.find { it.id == id }
             as UserStyleSetting.ListUserStyleSetting
     return (this[colorStyleSetting]
@@ -36,7 +40,7 @@ fun UserStyle.getColorStyle(): String {
 context(UserStyleSchema)
 @OptIn(ExperimentalHierarchicalStyle::class)
 fun UserStyle.getTickEnabledStyle(): Boolean {
-    val id = UserStyleSetting.Id("tick_enabled_style")
+    val id = UserStyleSetting.Id(DRAW_HOUR_PIPS_STYLE_SETTING)
     val styleSetting = rootUserStyleSettings.find { it.id == id }
             as UserStyleSetting.BooleanUserStyleSetting
     return (this[styleSetting]
@@ -46,28 +50,9 @@ fun UserStyle.getTickEnabledStyle(): Boolean {
 context(UserStyleSchema)
 @OptIn(ExperimentalHierarchicalStyle::class)
 fun UserStyle.getMinuteHandStyle(): Double {
-    val id = UserStyleSetting.Id("minute_hand_style")
+    val id = UserStyleSetting.Id(WATCH_HAND_LENGTH_STYLE_SETTING)
     val styleSetting = rootUserStyleSettings.find { it.id == id }
             as UserStyleSetting.DoubleRangeUserStyleSetting
     return (this[styleSetting]
             as UserStyleSetting.DoubleRangeUserStyleSetting.DoubleRangeOption).value
-}
-
-context(UserStyleSchema)
-fun EditorSession.createWatchFacePreview(
-    complicationsPreviewData: Map<Int, ComplicationData>
-): ImageBitmap {
-    return this.renderWatchFaceToBitmap(
-        RenderParameters(
-            DrawMode.INTERACTIVE,
-            WatchFaceLayer.ALL_WATCH_FACE_LAYERS,
-            RenderParameters.HighlightLayer(
-                RenderParameters.HighlightedElement.AllComplicationSlots,
-                Color.RED, // Red complication highlight.
-                Color.argb(128, 0, 0, 0) // Darken everything else.
-            )
-        ),
-        this.previewReferenceInstant,
-        complicationsPreviewData
-    ).asImageBitmap()
 }

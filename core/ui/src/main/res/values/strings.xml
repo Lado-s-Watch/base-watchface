@@ -63,6 +63,8 @@
     (a watch making term) [CHAR LIMIT=20] -->
     <string name="watchface_complications_setting_description">Number and position</string>
 
+    <string name="watchface_complications_setting_in_ambient">Complications in ambient mode</string>
+
     <!-- Menu option within the complications configuration widget that lets us select both
     the left and the right complication for rendering. [CHAR LIMIT=20] -->
     <string name="watchface_complications_setting_both">Both</string>

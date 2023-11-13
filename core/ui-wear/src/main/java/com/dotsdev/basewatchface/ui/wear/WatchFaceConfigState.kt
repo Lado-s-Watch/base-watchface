@@ -1,5 +1,6 @@
 package com.dotsdev.basewatchface.ui.wear
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -10,11 +11,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.wear.watchface.editor.EditorSession
+import androidx.wear.watchface.style.UserStyleSetting
 import com.dotsdev.basewatchface.ui.wear.utils.extensions.createWatchFacePreview
 import com.dotsdev.basewatchface.ui.wear.utils.extensions.getColorStyle
 import com.dotsdev.basewatchface.ui.wear.utils.extensions.getMinuteHandStyle
 import com.dotsdev.basewatchface.ui.wear.utils.extensions.getShowComplicationsInAmbient
 import com.dotsdev.basewatchface.ui.wear.utils.extensions.getTickEnabledStyle
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.setUserStyleOption
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.combine
@@ -65,22 +68,17 @@ fun rememberWatchFaceConfigState(
                     editorSession.complicationsPreviewData
                 ) { userStyle, complicationsPreviewData ->
                     yield()
-                    with(editorSession.userStyleSchema) {
-                        editWatchFaceUiState = EditWatchFaceUiState.Success(
-                            editorSession.createWatchFacePreview(
-                                complicationsPreviewData
-                            )
+                    editWatchFaceUiState = EditWatchFaceUiState.Success(
+                        editorSession.createWatchFacePreview(
+                            complicationsPreviewData
                         )
-                    }
+                    )
                 }.launchIn(scope + Dispatchers.Main.immediate)
 
                 snapshotFlow { userStyles }.distinctUntilChanged().onEach {
-                    editorSession.userStyle.value =
-                        editorSession.userStyle.value.toMutableUserStyle().apply {
-                            with(editorSession.userStyleSchema) {
-                                // TODO: set UserStyle
-                            }
-                        }.toUserStyle()
+                    with(editorSession.userStyleSchema) {
+                        editorSession.userStyle.value = editorSession.setUserStyleOption(it)
+                    }
                 }.launchIn(scope)
             }
         }
