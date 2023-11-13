@@ -66,12 +66,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".presentation.MainActivity"
-            android:exported="true"
-            android:theme="@android:style/Theme.DeviceDefault">
-        </activity>
     </application>
 
 </manifest>

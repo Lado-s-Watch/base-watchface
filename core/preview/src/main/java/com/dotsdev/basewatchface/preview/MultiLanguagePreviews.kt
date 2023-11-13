@@ -38,10 +38,3 @@ object MultiLanguagePreviewDefinition {
     locale = MultiLanguagePreviewDefinition.English.Language,
 )
 annotation class MultiLanguagePreviews
-
-@WearPreviewSquare
-@WearPreviewLargeRound
-@WearPreviewSmallRound
-@WearPreviewDevices
-@MultiLanguagePreviews
-annotation class MultiLanguageWearPreview

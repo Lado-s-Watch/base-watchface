@@ -9,7 +9,7 @@ import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import com.dotsdev.basewatchface.feature.wear.screens.colorpicker.colorPickerScreen
-import com.dotsdev.basewatchface.preview.MultiLanguageWearPreview
+import com.dotsdev.basewatchface.preview.WearPreview
 import com.dotsdev.basewatchface.ui.R
 import com.dotsdev.basewatchface.ui.wear.EditWatchFaceUiState
 import com.dotsdev.basewatchface.ui.wear.UserStyles
@@ -39,7 +39,7 @@ fun WatchFaceConfigScreen(
 }
 
 
-@MultiLanguageWearPreview
+@WearPreview
 @Composable
 fun WatchFaceConfigScreenPreview() {
     MaterialTheme {
