@@ -20,7 +20,7 @@ import androidx.wear.watchface.style.UserStyle
 import androidx.wear.watchface.style.UserStyleSetting
 import androidx.wear.watchface.style.WatchFaceLayer
 import com.dotsdev.basewatchface.ui.R
-import com.dotsdev.basewatchface.ui.wear.resources.ColorStyleIdAndResourceIds
+import com.dotsdev.basewatchface.ui.wear.resources.ColorStyleId
 import com.dotsdev.basewatchface.ui.wear.resources.WatchFaceColorPalette
 import com.dotsdev.basewatchface.ui.wear.resources.WatchFaceData
 import com.dotsdev.basewatchface.ui.wear.utils.COLOR_STYLE_SETTING
@@ -137,7 +137,7 @@ class AnalogWatchCanvasRenderer(
                             UserStyleSetting.ListUserStyleSetting.ListOption
 
                     newWatchFaceData = newWatchFaceData.copy(
-                        activeColorStyle = ColorStyleIdAndResourceIds.getColorStyleConfig(
+                        activeColorStyle = ColorStyleId.getColorStyleConfig(
                             listOption.id.toString()
                         )
                     )

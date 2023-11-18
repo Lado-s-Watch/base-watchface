@@ -20,7 +20,7 @@ import androidx.annotation.DrawableRes
 
 /**
  * Color resources and drawable id needed to render the watch face. Translated from
- * [ColorStyleIdAndResourceIds] constant ids to actual resources with context at run time.
+ * [ColorStyleId] constant ids to actual resources with context at run time.
  *
  * This is only needed when the watch face is active.
  *
@@ -43,12 +43,12 @@ data class WatchFaceColorPalette(
 ) {
     companion object {
         /**
-         * Converts [ColorStyleIdAndResourceIds] to [WatchFaceColorPalette].
+         * Converts [ColorStyleId] to [WatchFaceColorPalette].
          */
         fun convertToWatchFaceColorPalette(
             context: Context,
-            activeColorStyle: ColorStyleIdAndResourceIds,
-            ambientColorStyle: ColorStyleIdAndResourceIds
+            activeColorStyle: ColorStyleId,
+            ambientColorStyle: ColorStyleId
         ): WatchFaceColorPalette {
             return WatchFaceColorPalette(
                 // Active colors

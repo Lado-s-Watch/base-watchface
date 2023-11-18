@@ -1,17 +1,9 @@
 package com.dotsdev.basewatchface.ui.wear.utils.extensions
 
-import android.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
-import androidx.wear.watchface.DrawMode
-import androidx.wear.watchface.RenderParameters
-import androidx.wear.watchface.complications.data.ComplicationData
-import androidx.wear.watchface.editor.EditorSession
 import androidx.wear.watchface.style.ExperimentalHierarchicalStyle
 import androidx.wear.watchface.style.UserStyle
 import androidx.wear.watchface.style.UserStyleSchema
 import androidx.wear.watchface.style.UserStyleSetting
-import androidx.wear.watchface.style.WatchFaceLayer
 import com.dotsdev.basewatchface.ui.wear.utils.COLOR_STYLE_SETTING
 import com.dotsdev.basewatchface.ui.wear.utils.DRAW_HOUR_PIPS_STYLE_SETTING
 import com.dotsdev.basewatchface.ui.wear.utils.SHOW_COMPLICATIONS_IN_AMBIENT_STYLE_SETTING

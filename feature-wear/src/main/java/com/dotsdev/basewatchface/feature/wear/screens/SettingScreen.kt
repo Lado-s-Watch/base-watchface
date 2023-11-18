@@ -15,10 +15,10 @@ import com.dotsdev.basewatchface.ui.R
 import com.dotsdev.basewatchface.ui.wear.EditWatchFaceUiState
 import com.dotsdev.basewatchface.ui.wear.UserStyles
 import com.dotsdev.basewatchface.ui.wear.WatchFaceConfigState
-import com.dotsdev.basewatchface.ui.wear.resources.ColorStyleIdAndResourceIds
+import com.dotsdev.basewatchface.ui.wear.resources.ColorStyleId
 import kotlinx.coroutines.awaitCancellation
 
-const val settingRoute = "color_picker"
+const val settingRoute = "setting"
 fun NavGraphBuilder.settingScreen(
     state: WatchFaceConfigState,
     modifier: Modifier = Modifier,
@@ -57,7 +57,7 @@ fun SettingScreenPreview() {
                     get() = EditWatchFaceUiState.Success(preview)
                 override var userStyles: UserStyles
                     get() = UserStyles(
-                        colorStyleId = ColorStyleIdAndResourceIds.AMBIENT.id,
+                        colorStyleId = ColorStyleId.AMBIENT.id,
                         ticksEnabled = true,
                         minuteHandLength = 60f,
                         showComplicationsInAmbient = true

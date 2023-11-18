@@ -1,18 +1,3 @@
-/*
- * Copyright 2021 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.dotsdev.basewatchface.ui.wear.resources
 
 import android.content.Context
@@ -57,7 +42,7 @@ private val WHITE_COLOR_STYLE_ICON_ID = R.drawable.white_style
  * renderer will use these resources to render the actual colors and ComplicationDrawables of the
  * watch face.
  */
-enum class ColorStyleIdAndResourceIds(
+enum class ColorStyleId(
     val id: String,
     @StringRes val nameResourceId: Int,
     @DrawableRes val iconResourceId: Int,
@@ -126,7 +111,7 @@ enum class ColorStyleIdAndResourceIds(
         /**
          * Translates the string id to the correct ColorStyleIdAndResourceIds object.
          */
-        fun getColorStyleConfig(id: String): ColorStyleIdAndResourceIds {
+        fun getColorStyleConfig(id: String): ColorStyleId {
             return when (id) {
                 AMBIENT.id -> AMBIENT
                 RED.id -> RED
@@ -143,7 +128,7 @@ enum class ColorStyleIdAndResourceIds(
          * options for the user to select a style.
          */
         fun toOptionList(context: Context): List<ListUserStyleSetting.ListOption> {
-            val colorStyleIdAndResourceIdsList = enumValues<ColorStyleIdAndResourceIds>()
+            val colorStyleIdAndResourceIdsList = enumValues<ColorStyleId>()
 
             return colorStyleIdAndResourceIdsList.map { colorStyleIdAndResourceIds ->
                 ListUserStyleSetting.ListOption(

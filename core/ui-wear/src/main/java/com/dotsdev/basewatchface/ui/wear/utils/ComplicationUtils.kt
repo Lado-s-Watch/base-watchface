@@ -23,6 +23,7 @@ import androidx.wear.watchface.ComplicationSlotsManager
 import androidx.wear.watchface.complications.ComplicationSlotBounds
 import androidx.wear.watchface.complications.DefaultComplicationDataSourcePolicy
 import androidx.wear.watchface.complications.SystemDataSources
+import androidx.wear.watchface.complications.data.ComplicationData
 import androidx.wear.watchface.complications.data.ComplicationType
 import androidx.wear.watchface.complications.rendering.CanvasComplicationDrawable
 import androidx.wear.watchface.complications.rendering.ComplicationDrawable
@@ -42,7 +43,7 @@ private const val LEFT_COMPLICATION_RIGHT_BOUND = 0.4f
 private const val RIGHT_COMPLICATION_LEFT_BOUND = 0.6f
 private const val RIGHT_COMPLICATION_RIGHT_BOUND = 0.8f
 
-private val DEFAULT_COMPLICATION_STYLE_DRAWABLE_ID = R.drawable.complication_red_style
+private val defaultComplicationStyleDrawable = R.drawable.complication_red_style
 
 // Unique IDs for each complication. The settings activity that supports allowing users
 // to select their complication data provider requires numbers to be >= 0.
@@ -78,7 +79,7 @@ sealed class ComplicationConfig(val id: Int, val supportedTypes: List<Complicati
 fun createComplicationSlotManager(
     context: Context,
     currentUserStyleRepository: CurrentUserStyleRepository,
-    drawableId: Int = DEFAULT_COMPLICATION_STYLE_DRAWABLE_ID
+    drawableId: Int = defaultComplicationStyleDrawable
 ): ComplicationSlotsManager {
     val defaultCanvasComplicationFactory =
         CanvasComplicationFactory { watchState, listener ->
@@ -91,7 +92,7 @@ fun createComplicationSlotManager(
 
     val leftComplication = ComplicationSlot.createRoundRectComplicationSlotBuilder(
         id = ComplicationConfig.Left.id,
-        canvasComplicationFactory = defaultCanvasComplicationFactory,
+        canvasComplicationFactory = createVerticalComplicationFactory(context),
         supportedTypes = ComplicationConfig.Left.supportedTypes,
         defaultDataSourcePolicy = DefaultComplicationDataSourcePolicy(
             SystemDataSources.DATA_SOURCE_DAY_OF_WEEK,
@@ -110,7 +111,7 @@ fun createComplicationSlotManager(
 
     val rightComplication = ComplicationSlot.createRoundRectComplicationSlotBuilder(
         id = ComplicationConfig.Right.id,
-        canvasComplicationFactory = defaultCanvasComplicationFactory,
+        canvasComplicationFactory = createVerticalComplicationFactory(context),
         supportedTypes = ComplicationConfig.Right.supportedTypes,
         defaultDataSourcePolicy = DefaultComplicationDataSourcePolicy(
             SystemDataSources.DATA_SOURCE_STEP_COUNT,
@@ -129,4 +130,8 @@ fun createComplicationSlotManager(
         listOf(leftComplication, rightComplication),
         currentUserStyleRepository
     )
+}
+
+fun ComplicationData.isBattery(): Boolean {
+    return dataSource?.className == "com.google.android.clockwork.sysui.experiences.complications.providers.BatteryProviderService"
 }

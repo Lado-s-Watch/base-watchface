@@ -5,7 +5,7 @@ import androidx.wear.watchface.style.UserStyleSchema
 import androidx.wear.watchface.style.UserStyleSetting
 import androidx.wear.watchface.style.WatchFaceLayer
 import com.dotsdev.basewatchface.ui.R
-import com.dotsdev.basewatchface.ui.wear.resources.ColorStyleIdAndResourceIds
+import com.dotsdev.basewatchface.ui.wear.resources.ColorStyleId
 import com.dotsdev.basewatchface.ui.wear.resources.DRAW_HOUR_PIPS_DEFAULT
 import com.dotsdev.basewatchface.ui.wear.resources.MINUTE_HAND_LENGTH_FRACTION_DEFAULT
 import com.dotsdev.basewatchface.ui.wear.resources.MINUTE_HAND_LENGTH_FRACTION_MAXIMUM
@@ -33,7 +33,7 @@ fun createUserStylesSchema(context: Context): UserStyleSchema {
             R.string.colors_style_setting,
             R.string.colors_style_setting_description,
             null,
-            ColorStyleIdAndResourceIds.toOptionList(context),
+            ColorStyleId.toOptionList(context),
             listOf(
                 WatchFaceLayer.BASE,
                 WatchFaceLayer.COMPLICATIONS,
