@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalConfiguration
+import com.dotsdev.basewatchface.ui.wear.utils.ComplicationConfig
 
 @Composable
 fun WatchFacePreview(bitmap: ImageBitmap, modifier: Modifier = Modifier) {
@@ -30,5 +31,6 @@ fun WatchFacePreview(bitmap: ImageBitmap, modifier: Modifier = Modifier) {
                     },
                 ),
         )
+        //ComplicationConfig.
     }
 }

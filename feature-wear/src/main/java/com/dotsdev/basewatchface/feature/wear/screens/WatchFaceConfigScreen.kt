@@ -8,6 +8,7 @@ import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
+import com.dotsdev.basewatchface.feature.wear.screens.colorpicker.colorPickerRoute
 import com.dotsdev.basewatchface.feature.wear.screens.colorpicker.colorPickerScreen
 import com.dotsdev.basewatchface.preview.WearPreview
 import com.dotsdev.basewatchface.ui.R
@@ -30,7 +31,9 @@ fun WatchFaceConfigScreen(
             navController = navController,
             startDestination = settingRoute
         ) {
-            settingScreen(state, modifier)
+            settingScreen(state, modifier) {
+                navController.navigate(colorPickerRoute)
+            }
             colorPickerScreen(state.userStyles.colorStyleId) {
                 state.userStyles = state.userStyles.copy(colorStyleId = it)
             }

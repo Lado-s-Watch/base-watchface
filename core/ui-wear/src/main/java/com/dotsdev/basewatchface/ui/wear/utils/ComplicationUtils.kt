@@ -1,18 +1,3 @@
-/*
- * Copyright 2020 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.dotsdev.basewatchface.ui.wear.utils
 
 import android.content.Context
@@ -35,7 +20,13 @@ import com.dotsdev.basewatchface.ui.R
 // location from 0.0 - 1.0.)
 // Both left and right complications use the same top and bottom bounds.
 private const val LEFT_AND_RIGHT_COMPLICATIONS_TOP_BOUND = 0.4f
-private const val LEFT_AND_RIGHT_COMPLICATIONS_BOTTOM_BOUND = 0.6f
+private const val LEFT_AND_RIGHT_COMPLICATIONS_BOTTOM_BOUND = 1f - LEFT_AND_RIGHT_COMPLICATIONS_TOP_BOUND
+
+private const val HORIZONTAL_COMPLICATION_LEFT_BOUND = 0.3f
+private const val HORIZONTAL_COMPLICATION_RIGHT_BOUND = 1f - HORIZONTAL_COMPLICATION_LEFT_BOUND
+
+private const val TOP_COMPLICATION_TOP_BOUND = 0.0625f
+private const val TOP_COMPLICATION_BOTTOM_BOUND = 3 * TOP_COMPLICATION_TOP_BOUND
 
 private const val LEFT_COMPLICATION_LEFT_BOUND = 0.2f
 private const val LEFT_COMPLICATION_RIGHT_BOUND = 0.4f
@@ -43,16 +34,6 @@ private const val LEFT_COMPLICATION_RIGHT_BOUND = 0.4f
 private const val RIGHT_COMPLICATION_LEFT_BOUND = 0.6f
 private const val RIGHT_COMPLICATION_RIGHT_BOUND = 0.8f
 
-private val defaultComplicationStyleDrawable = R.drawable.complication_red_style
-
-// Unique IDs for each complication. The settings activity that supports allowing users
-// to select their complication data provider requires numbers to be >= 0.
-internal const val LEFT_COMPLICATION_ID = 100
-internal const val RIGHT_COMPLICATION_ID = 101
-
-/**
- * Represents the unique id associated with a complication and the complication types it supports.
- */
 sealed class ComplicationConfig(val id: Int, val supportedTypes: List<ComplicationType>) {
     data object Left : ComplicationConfig(
         LEFT_COMPLICATION_ID,
@@ -73,22 +54,24 @@ sealed class ComplicationConfig(val id: Int, val supportedTypes: List<Complicati
             ComplicationType.SMALL_IMAGE
         )
     )
+
+    data object Top : ComplicationConfig(
+        TOP_COMPLICATION_ID,
+        listOf(ComplicationType.SHORT_TEXT)
+    )
+    companion object {
+        // Unique IDs for each complication. The settings activity that supports allowing users
+        // to select their complication data provider requires numbers to be >= 0.
+        private const val LEFT_COMPLICATION_ID = 100
+        private const val RIGHT_COMPLICATION_ID = 101
+        private const val TOP_COMPLICATION_ID = 102
+    }
 }
 
-// Utility function that initializes default complication slots (left and right).
 fun createComplicationSlotManager(
     context: Context,
-    currentUserStyleRepository: CurrentUserStyleRepository,
-    drawableId: Int = defaultComplicationStyleDrawable
+    currentUserStyleRepository: CurrentUserStyleRepository
 ): ComplicationSlotsManager {
-    val defaultCanvasComplicationFactory =
-        CanvasComplicationFactory { watchState, listener ->
-            CanvasComplicationDrawable(
-                ComplicationDrawable.getDrawable(context, drawableId)!!,
-                watchState,
-                listener
-            )
-        }
 
     val leftComplication = ComplicationSlot.createRoundRectComplicationSlotBuilder(
         id = ComplicationConfig.Left.id,
@@ -106,8 +89,7 @@ fun createComplicationSlotManager(
                 LEFT_AND_RIGHT_COMPLICATIONS_BOTTOM_BOUND
             )
         )
-    )
-        .build()
+    ).build()
 
     val rightComplication = ComplicationSlot.createRoundRectComplicationSlotBuilder(
         id = ComplicationConfig.Right.id,
@@ -126,8 +108,27 @@ fun createComplicationSlotManager(
             )
         )
     ).build()
+
+    val topComplication = ComplicationSlot.createRoundRectComplicationSlotBuilder(
+        id = ComplicationConfig.Top.id,
+        canvasComplicationFactory = createHorizontalComplicationFactory(context),
+        supportedTypes = ComplicationConfig.Top.supportedTypes,
+        defaultDataSourcePolicy = DefaultComplicationDataSourcePolicy(
+            SystemDataSources.DATA_SOURCE_WATCH_BATTERY,
+            ComplicationType.SHORT_TEXT
+        ),
+        bounds = ComplicationSlotBounds(
+            RectF(
+                HORIZONTAL_COMPLICATION_LEFT_BOUND,
+                TOP_COMPLICATION_TOP_BOUND,
+                HORIZONTAL_COMPLICATION_RIGHT_BOUND,
+                TOP_COMPLICATION_BOTTOM_BOUND
+            )
+        )
+    ).build()
+
     return ComplicationSlotsManager(
-        listOf(leftComplication, rightComplication),
+        listOf(leftComplication, rightComplication, topComplication),
         currentUserStyleRepository
     )
 }

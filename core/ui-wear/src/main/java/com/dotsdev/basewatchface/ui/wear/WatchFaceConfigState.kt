@@ -1,6 +1,5 @@
 package com.dotsdev.basewatchface.ui.wear
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -9,9 +8,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.res.colorResource
 import androidx.wear.watchface.editor.EditorSession
-import androidx.wear.watchface.style.UserStyleSetting
+import com.dotsdev.basewatchface.ui.wear.resources.ColorStyleId
 import com.dotsdev.basewatchface.ui.wear.utils.extensions.createWatchFacePreview
 import com.dotsdev.basewatchface.ui.wear.utils.extensions.getColorStyle
 import com.dotsdev.basewatchface.ui.wear.utils.extensions.getMinuteHandStyle
@@ -66,7 +67,7 @@ fun rememberWatchFaceConfigState(
                 combine(
                     editorSession.userStyle,
                     editorSession.complicationsPreviewData
-                ) { userStyle, complicationsPreviewData ->
+                ) { _, complicationsPreviewData ->
                     yield()
                     editWatchFaceUiState = EditWatchFaceUiState.Success(
                         editorSession.createWatchFacePreview(
@@ -88,7 +89,6 @@ fun rememberWatchFaceConfigState(
 sealed class EditWatchFaceUiState {
     data class Success(val imageBitmap: ImageBitmap) : EditWatchFaceUiState()
     data class Loading(val message: String) : EditWatchFaceUiState()
-    data class Error(val exception: Throwable) : EditWatchFaceUiState()
 }
 
 data class UserStyles(
@@ -96,5 +96,9 @@ data class UserStyles(
     val ticksEnabled: Boolean,
     val minuteHandLength: Float,
     val showComplicationsInAmbient: Boolean,
-)
-
+) {
+    @Composable
+    fun getBackgroundColor(): Color {
+        return colorResource(id = ColorStyleId.getColorStyleConfig(colorStyleId).backgroundColorId)
+    }
+}
