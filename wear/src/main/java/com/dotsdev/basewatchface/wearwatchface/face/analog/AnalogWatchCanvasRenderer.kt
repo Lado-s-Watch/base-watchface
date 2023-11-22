@@ -25,6 +25,8 @@ import com.dotsdev.basewatchface.ui.wear.resources.WatchFaceColorPalette
 import com.dotsdev.basewatchface.ui.wear.resources.WatchFaceData
 import com.dotsdev.basewatchface.ui.wear.utils.COLOR_STYLE_SETTING
 import com.dotsdev.basewatchface.ui.wear.utils.DRAW_HOUR_PIPS_STYLE_SETTING
+import com.dotsdev.basewatchface.ui.wear.utils.HorizontalComplication
+import com.dotsdev.basewatchface.ui.wear.utils.VerticalComplication
 import com.dotsdev.basewatchface.ui.wear.utils.WATCH_HAND_LENGTH_STYLE_SETTING
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -186,11 +188,14 @@ class AnalogWatchCanvasRenderer(
             // each of the styles are defined in XML so we need to replace the complication's
             // drawables.
             for ((_, complication) in complicationSlotsManager.complicationSlots) {
-                ComplicationDrawable.getDrawable(
-                    context,
-                    watchFaceColors.complicationStyleDrawableId
-                )?.let {
-                    (complication.renderer as CanvasComplicationDrawable).drawable = it
+                when (complication.renderer) {
+                    is VerticalComplication -> (complication.renderer as VerticalComplication).tertiaryColor =
+                        watchFaceColors.activePrimaryColor
+
+                    is HorizontalComplication -> (complication.renderer as HorizontalComplication).tertiaryColor =
+                        watchFaceColors.activePrimaryColor
+
+                    else -> {}
                 }
             }
         }

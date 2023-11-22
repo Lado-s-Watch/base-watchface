@@ -42,7 +42,7 @@ fun rememberWatchFaceConfigState(
     var editWatchFaceUiState: EditWatchFaceUiState by remember {
         mutableStateOf(EditWatchFaceUiState.Loading("initial"))
     }
-    return rememberSaveable(editorSession) {
+    return remember {
         object : WatchFaceConfigState {
             override val editWatchFaceUiState: EditWatchFaceUiState
                 get() = editWatchFaceUiState

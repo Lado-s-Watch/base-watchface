@@ -68,6 +68,7 @@ abstract class CustomComplication : CanvasComplication {
         alpha = 127
     }
 
+    @JvmField
     protected var data: ComplicationData = NoDataComplicationData()
 
     override fun getData(): ComplicationData = data

@@ -7,26 +7,15 @@ plugins {
 }
 
 android {
-    namespace = "com.dotsdev.basewatchface"
+    namespace = "com.dotsdev.basewatchface.wearwatchface"
 
     defaultConfig {
-        applicationId = "com.dotsdev.basewatchface"
         versionCode = 1
         versionName = "1.0"
         vectorDrawables {
             useSupportLibrary = true
         }
 
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
     }
 }
 

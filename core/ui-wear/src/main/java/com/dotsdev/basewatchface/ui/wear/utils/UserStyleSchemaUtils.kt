@@ -17,7 +17,7 @@ import com.dotsdev.basewatchface.ui.wear.resources.MINUTE_HAND_LENGTH_FRACTION_M
 const val COLOR_STYLE_SETTING = "color_style_setting"
 const val DRAW_HOUR_PIPS_STYLE_SETTING = "draw_hour_pips_style_setting"
 const val WATCH_HAND_LENGTH_STYLE_SETTING = "watch_hand_length_style_setting"
-const val SHOW_COMPLICATIONS_IN_AMBIENT_STYLE_SETTING = "show_complications_in_ambient_style_setting"
+const val SHOW_COMPLICATIONS_IN_AMBIENT_STYLE_SETTING = "show_in_ambient_style_setting"
 
 /*
  * Creates user styles in the settings activity associated with the watch face, so users can
