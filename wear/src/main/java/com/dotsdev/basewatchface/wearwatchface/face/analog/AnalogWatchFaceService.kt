@@ -1,6 +1,5 @@
 package com.dotsdev.basewatchface.wearwatchface.face.analog
 
-import android.util.Log
 import android.view.SurfaceHolder
 import androidx.wear.watchface.CanvasType
 import androidx.wear.watchface.ComplicationSlotsManager
@@ -40,8 +39,6 @@ class AnalogWatchFaceService : WatchFaceService() {
         complicationSlotsManager: ComplicationSlotsManager,
         currentUserStyleRepository: CurrentUserStyleRepository
     ): WatchFace {
-        Log.d(TAG, "createWatchFace()")
-
         // Creates class that renders the watch face.
         val renderer = AnalogWatchCanvasRenderer(
             context = applicationContext,
@@ -57,9 +54,5 @@ class AnalogWatchFaceService : WatchFaceService() {
             watchFaceType = WatchFaceType.ANALOG,
             renderer = renderer
         )
-    }
-
-    companion object {
-        const val TAG = "AnalogWatchFaceService"
     }
 }

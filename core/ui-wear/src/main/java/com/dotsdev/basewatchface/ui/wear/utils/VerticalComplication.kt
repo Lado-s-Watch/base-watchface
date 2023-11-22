@@ -23,39 +23,46 @@ class VerticalComplication(private val context: Context) : CustomComplication() 
         val now = Instant.now()
 
         var text = data.text.getTextAt(context.resources, now).toString().uppercase()
-        if (text == "--") {
-            return
-        }
-
-        val isBattery = data.isBattery()
+        if (text == "--") return
 
         var title: String? = null
         var icon: Bitmap? = null
         var iconBounds = Rect()
-
-        if (isBattery) {
-            val drawable = ContextCompat.getDrawable(context, R.drawable.ic_battery)!!
-            icon = drawable.toBitmap(
-                (32f / 78f * bounds.width()).toInt(), (32f / 78f * bounds.width()).toInt()
-            )
-            iconBounds = Rect(
-                0, 0, (32f / 78f * bounds.width()).toInt(), (32f / 78f * bounds.width()).toInt()
-            )
-        } else if (data.monochromaticImage != null) {
-            val drawable = data.monochromaticImage!!.image.loadDrawable(context)
-            if (drawable != null) {
-                val size = (bounds.width().coerceAtMost(bounds.height()).toFloat() / 2f).toInt()
-
-                icon = drawable.toBitmap(size, size)
-                iconBounds = Rect(0, 0, size, size)
-            }
-        }
-
         var prefixLen = 0
 
-        if (isBattery) {
-            prefixLen = 3 - text.length
-            text = text.padStart(3, ' ')
+        when (data.provider()) {
+            ComplicationProvider.Battery -> {
+                val drawable = ContextCompat.getDrawable(context, R.drawable.ic_battery)!!
+                icon = drawable.toBitmap(
+                    (32f / 78f * bounds.width()).toInt(), (32f / 78f * bounds.width()).toInt()
+                )
+                iconBounds = Rect(
+                    0, 0, (32f / 78f * bounds.width()).toInt(), (32f / 78f * bounds.width()).toInt()
+                )
+                prefixLen = 3 - text.length
+                text = text.padStart(3, ' ')
+            }
+
+            ComplicationProvider.StepCount -> {
+                val drawable = ContextCompat.getDrawable(context, R.drawable.step_count)!!
+                icon = drawable.toBitmap(
+                    (32f / 78f * bounds.width()).toInt(), (32f / 78f * bounds.width()).toInt()
+                )
+                iconBounds = Rect(
+                    0, 0, (32f / 78f * bounds.width()).toInt(), (32f / 78f * bounds.width()).toInt()
+                )
+            }
+
+            else -> {
+                if (data.monochromaticImage != null) {
+                    val drawable = data.monochromaticImage!!.image.loadDrawable(context)
+                    if (drawable != null) {
+                        val size = (bounds.width().coerceAtMost(bounds.height()).toFloat() / 2f).toInt()
+                        icon = drawable.toBitmap(size, size)
+                        iconBounds = Rect(0, 0, size, size)
+                    }
+                }
+            }
         }
 
         if (data.title != null && !data.title!!.isPlaceholder()) {
@@ -72,7 +79,7 @@ class VerticalComplication(private val context: Context) : CustomComplication() 
 
         val textBounds = Rect()
 
-        if (isBattery) {
+        if (data.isBattery()) {
             textPaint.getTextBounds("000", 0, 3, textBounds)
         } else {
             textPaint.getTextBounds(text, 0, text.length, textBounds)
@@ -103,7 +110,7 @@ class VerticalComplication(private val context: Context) : CustomComplication() 
             textOffsetY = (height - textBounds.height()).toFloat() / 2f
 
             iconOffsetY += 9f / 132f * bounds.height()
-            if (isBattery) {
+            if (data.isBattery()) {
                 iconOffsetY = iconOffsetY.toInt().toFloat()
             }
 
@@ -188,7 +195,6 @@ class VerticalComplication(private val context: Context) : CustomComplication() 
     ) {
         val icon: Bitmap
         val iconBounds: Rect
-
         val drawable = data.smallImage.image.loadDrawable(context) ?: return
 
         val size = (bounds.width().coerceAtMost(bounds.height()).toFloat() * 0.75f).toInt()

@@ -13,8 +13,6 @@ import androidx.wear.watchface.ComplicationSlotsManager
 import androidx.wear.watchface.DrawMode
 import androidx.wear.watchface.Renderer
 import androidx.wear.watchface.WatchState
-import androidx.wear.watchface.complications.rendering.CanvasComplicationDrawable
-import androidx.wear.watchface.complications.rendering.ComplicationDrawable
 import androidx.wear.watchface.style.CurrentUserStyleRepository
 import androidx.wear.watchface.style.UserStyle
 import androidx.wear.watchface.style.UserStyleSetting
@@ -43,6 +41,7 @@ import kotlin.math.sin
  * changes by user via [userStyleRepository.addUserStyleListener()].
  */
 private const val FRAME_PERIOD_MS_DEFAULT: Long = 16L
+
 class AnalogWatchCanvasRenderer(
     private val context: Context,
     surfaceHolder: SurfaceHolder,
@@ -144,6 +143,7 @@ class AnalogWatchCanvasRenderer(
                         )
                     )
                 }
+
                 DRAW_HOUR_PIPS_STYLE_SETTING -> {
                     val booleanValue = options.value as
                             UserStyleSetting.BooleanUserStyleSetting.BooleanOption
@@ -152,6 +152,7 @@ class AnalogWatchCanvasRenderer(
                         drawHourPips = booleanValue.value
                     )
                 }
+
                 WATCH_HAND_LENGTH_STYLE_SETTING -> {
                     val doubleValue = options.value as
                             UserStyleSetting.DoubleRangeUserStyleSetting.DoubleRangeOption
@@ -298,9 +299,9 @@ class AnalogWatchCanvasRenderer(
         // Since each hand does more than one cycle a day, we are only interested in the remainder
         // of the secondOfDay modulo the hand interval
         val hourRotation = secondOfDay.rem(secondsPerHourHandRotation) * 360.0f /
-            secondsPerHourHandRotation
+                secondsPerHourHandRotation
         val minuteRotation = secondOfDay.rem(secondsPerMinuteHandRotation) * 360.0f /
-            secondsPerMinuteHandRotation
+                secondsPerMinuteHandRotation
 
         canvas.withScale(
             x = WATCH_HAND_SCALE,
@@ -339,6 +340,7 @@ class AnalogWatchCanvasRenderer(
                 clockHandPaint.color = watchFaceColors.activeSecondaryColor
 
                 withRotation(secondsRotation, bounds.exactCenterX(), bounds.exactCenterY()) {
+                    Log.d("!@#", "drawClockHands: update clock hand $zonedDateTime $secondsRotation")
                     drawPath(secondHand, clockHandPaint)
                 }
             }

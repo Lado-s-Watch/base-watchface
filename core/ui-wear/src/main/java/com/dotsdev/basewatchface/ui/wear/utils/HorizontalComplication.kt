@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.RectF
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.wear.watchface.CanvasComplicationFactory
@@ -23,9 +24,7 @@ class HorizontalComplication(private val context: Context): CustomComplication()
         val now = Instant.now()
 
         var text = data.text.getTextAt(context.resources, now).toString().uppercase()
-        if (text == "--") {
-            return
-        }
+        if (text == "--") return
 
         val isBattery = data.isBattery()
 

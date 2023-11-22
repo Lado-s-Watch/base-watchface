@@ -2,7 +2,6 @@ package com.dotsdev.basewatchface.ui.wear.utils
 
 import android.content.Context
 import android.graphics.RectF
-import androidx.wear.watchface.CanvasComplicationFactory
 import androidx.wear.watchface.ComplicationSlot
 import androidx.wear.watchface.ComplicationSlotsManager
 import androidx.wear.watchface.complications.ComplicationSlotBounds
@@ -10,22 +9,20 @@ import androidx.wear.watchface.complications.DefaultComplicationDataSourcePolicy
 import androidx.wear.watchface.complications.SystemDataSources
 import androidx.wear.watchface.complications.data.ComplicationData
 import androidx.wear.watchface.complications.data.ComplicationType
-import androidx.wear.watchface.complications.rendering.CanvasComplicationDrawable
-import androidx.wear.watchface.complications.rendering.ComplicationDrawable
 import androidx.wear.watchface.style.CurrentUserStyleRepository
-import com.dotsdev.basewatchface.ui.R
 
 // Information needed for complications.
 // Creates bounds for the locations of both right and left complications. (This is the
 // location from 0.0 - 1.0.)
 // Both left and right complications use the same top and bottom bounds.
 private const val LEFT_AND_RIGHT_COMPLICATIONS_TOP_BOUND = 0.4f
-private const val LEFT_AND_RIGHT_COMPLICATIONS_BOTTOM_BOUND = 1f - LEFT_AND_RIGHT_COMPLICATIONS_TOP_BOUND
+private const val LEFT_AND_RIGHT_COMPLICATIONS_BOTTOM_BOUND =
+    1f - LEFT_AND_RIGHT_COMPLICATIONS_TOP_BOUND
 
 private const val HORIZONTAL_COMPLICATION_LEFT_BOUND = 0.3f
 private const val HORIZONTAL_COMPLICATION_RIGHT_BOUND = 1f - HORIZONTAL_COMPLICATION_LEFT_BOUND
 
-private const val TOP_COMPLICATION_TOP_BOUND = 0.0625f
+private const val TOP_COMPLICATION_TOP_BOUND = 0.1f
 private const val TOP_COMPLICATION_BOTTOM_BOUND = 3 * TOP_COMPLICATION_TOP_BOUND
 
 private const val LEFT_COMPLICATION_LEFT_BOUND = 0.2f
@@ -59,6 +56,7 @@ sealed class ComplicationConfig(val id: Int, val supportedTypes: List<Complicati
         TOP_COMPLICATION_ID,
         listOf(ComplicationType.SHORT_TEXT)
     )
+
     companion object {
         // Unique IDs for each complication. The settings activity that supports allowing users
         // to select their complication data provider requires numbers to be >= 0.
@@ -133,6 +131,22 @@ fun createComplicationSlotManager(
     )
 }
 
-fun ComplicationData.isBattery(): Boolean {
-    return dataSource?.className == "com.google.android.clockwork.sysui.experiences.complications.providers.BatteryProviderService"
+fun ComplicationData.provider(): ComplicationProvider {
+    return ComplicationProvider.of(dataSource?.className?.split(".")?.lastOrNull())
+}
+
+fun ComplicationData.isBattery(): Boolean = this.provider() == ComplicationProvider.Battery
+
+enum class ComplicationProvider(val provider: String) {
+    Battery("BatteryProviderService"),
+    DayAndDate("DayAndDateProviderService"),
+    StepCount("StepsProviderService"),
+    Notification("UnreadNotificationsProviderService"),
+    AppShortcut("LauncherProviderService"),
+    Unknown("Unknown");
+
+    companion object {
+        fun of(provider: String?): ComplicationProvider =
+            entries.find { it.provider == provider } ?: Unknown
+    }
 }
