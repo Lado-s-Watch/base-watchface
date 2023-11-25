@@ -31,27 +31,37 @@ class HorizontalComplication(private val context: Context): CustomComplication()
         var title: String? = null
         var icon: Bitmap? = null
         var iconBounds = Rect()
+        when (data.provider()) {
+            ComplicationProvider.Battery -> {
+                text = text.padStart(3, ' ')
+                renderCircleProgressComplication(canvas, bounds, text)
+                return
+            }
 
-        if (isBattery) {
-            val drawable = ContextCompat.getDrawable(context, R.drawable.ic_battery)!!
-            icon = drawable.toBitmap(
-                (32f / 48f * bounds.height()).toInt(),
-                (32f / 48f * bounds.height()).toInt()
-            )
-            iconBounds =
-                Rect(
-                    0,
-                    0,
+            ComplicationProvider.StepCount -> {
+                val drawable = ContextCompat.getDrawable(context, R.drawable.step_count)!!
+                icon = drawable.toBitmap(
                     (32f / 48f * bounds.height()).toInt(),
                     (32f / 48f * bounds.height()).toInt()
                 )
-        } else if (data.monochromaticImage != null) {
-            val drawable = data.monochromaticImage!!.image.loadDrawable(context)
-            if (drawable != null) {
-                val size = (bounds.width().coerceAtMost(bounds.height()).toFloat() * 0.55f).toInt()
+                iconBounds =
+                    Rect(
+                        0,
+                        0,
+                        (32f / 48f * bounds.height()).toInt(),
+                        (32f / 48f * bounds.height()).toInt()
+                    )
+            }
 
-                icon = drawable.toBitmap(size, size)
-                iconBounds = Rect(0, 0, size, size)
+            else -> {
+                if (data.monochromaticImage != null) {
+                    val drawable = data.monochromaticImage!!.image.loadDrawable(context)
+                    if (drawable != null) {
+                        val size = (bounds.width().coerceAtMost(bounds.height()).toFloat() * 0.55f).toInt()
+                        icon = drawable.toBitmap(size, size)
+                        iconBounds = Rect(0, 0, size, size)
+                    }
+                }
             }
         }
 

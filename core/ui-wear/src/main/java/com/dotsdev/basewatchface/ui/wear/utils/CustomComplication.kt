@@ -6,6 +6,7 @@ import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.Rect
+import android.graphics.RectF
 import androidx.core.graphics.ColorUtils
 import androidx.wear.watchface.CanvasComplication
 import androidx.wear.watchface.RenderParameters
@@ -105,6 +106,46 @@ abstract class CustomComplication : CanvasComplication {
 
             else -> return
         }
+    }
+
+    open fun renderCircleProgressComplication(
+        canvas: Canvas,
+        bounds: Rect,
+        textProgress: String,
+    ) {
+        val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.GRAY
+            style = Paint.Style.STROKE
+            strokeWidth = 5f
+        }
+
+        val remainPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = tertiaryColor
+            style = Paint.Style.STROKE
+            strokeWidth = 5f
+        }
+
+        val progress = textProgress.trim().toFloat()
+
+        val centerX = bounds.centerX().toFloat()
+        val centerY = bounds.centerY().toFloat()
+        val radius = bounds.width() / 5f
+
+        // Draw grey circle
+        canvas.drawCircle(centerX, centerY, radius, circlePaint)
+
+        // Draw percent
+        val oval = RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius)
+        canvas.drawArc(oval, -90f, 360 * progress / 100, false, remainPaint)
+
+        // Draw text
+        val textWidth = textPaint.measureText(textProgress)
+        canvas.drawText(
+            textProgress,
+            centerX - textWidth / 2,
+            centerY + textPaint.textSize / 4,
+            textPaint.apply { textSize = 20f }
+        )
     }
 
     abstract fun renderShortTextComplication(

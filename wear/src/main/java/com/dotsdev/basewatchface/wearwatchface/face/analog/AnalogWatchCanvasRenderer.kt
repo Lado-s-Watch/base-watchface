@@ -79,12 +79,6 @@ class AnalogWatchCanvasRenderer(
         watchFaceData.ambientColorStyle
     )
 
-    private val backgroundColor = if (renderParameters.drawMode == DrawMode.AMBIENT) {
-        watchFaceColors.ambientBackgroundColor
-    } else {
-        watchFaceColors.activeBackgroundColor
-    }
-
     // Initializes paint object for painting the clock hands with default values.
     private val clockHandPaint = Paint().apply {
         isAntiAlias = true
@@ -232,12 +226,13 @@ class AnalogWatchCanvasRenderer(
         zonedDateTime: ZonedDateTime,
         sharedAssets: AnalogSharedAssets
     ) {
-
-
+        val backgroundColor = if (renderParameters.drawMode == DrawMode.AMBIENT) {
+            watchFaceColors.ambientBackgroundColor
+        } else {
+            watchFaceColors.activeBackgroundColor
+        }
         canvas.drawColor(backgroundColor)
-
         drawComplications(canvas, zonedDateTime)
-
         if (renderParameters.watchFaceLayers.contains(WatchFaceLayer.COMPLICATIONS_OVERLAY)) {
             drawClockHands(canvas, bounds, zonedDateTime, true)
         }
