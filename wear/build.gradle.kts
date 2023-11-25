@@ -10,6 +10,7 @@ android {
     namespace = "com.dotsdev.basewatchface.wearwatchface"
 
     defaultConfig {
+        applicationId = "com.dotsdev.basewatchface.wearwatchface"
         versionCode = 1
         versionName = "1.0"
         vectorDrawables {

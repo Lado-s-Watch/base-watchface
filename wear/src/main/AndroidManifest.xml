@@ -52,7 +52,7 @@
         </service>
 
         <activity
-            android:name=".configuration.WatchFaceConfigActivity"
+            android:name="com.dotsdev.basewatchface.wearwatchface.configuration.WatchFaceConfigActivity"
             android:exported="true"
             android:label="@string/title_activity_watch_face_config"
             android:taskAffinity=".main">
