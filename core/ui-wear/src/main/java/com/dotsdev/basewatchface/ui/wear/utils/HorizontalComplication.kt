@@ -13,6 +13,11 @@ import androidx.wear.watchface.complications.data.MonochromaticImageComplication
 import androidx.wear.watchface.complications.data.ShortTextComplicationData
 import androidx.wear.watchface.complications.data.SmallImageComplicationData
 import com.dotsdev.basewatchface.ui.R
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.ComplicationProvider
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.getIconBitmap
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.getText
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.getTitle
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.provider
 import java.time.Instant
 
 class HorizontalComplication(private val context: Context): CustomComplication() {
@@ -21,26 +26,27 @@ class HorizontalComplication(private val context: Context): CustomComplication()
         bounds: Rect,
         data: ShortTextComplicationData
     ) {
-        val now = Instant.now()
-
-        var text = data.text.getTextAt(context.resources, now).toString().uppercase()
+        val text = data.getText(context)
         if (text == "--") return
 
-        val isBattery = data.isBattery()
-
-        var title: String? = null
-        var icon: Bitmap? = null
-        var iconBounds = Rect()
+        val title = data.getTitle(context)
+        val icon: Bitmap?
+        val iconBounds: Rect
         when (data.provider()) {
             ComplicationProvider.Battery -> {
-                text = text.padStart(3, ' ')
-                renderCircleProgressComplication(canvas, bounds, text)
+                val progress = try {
+                    text.padStart(3, ' ').trim().toFloat()
+                } catch (e: Exception) {
+                    0f
+                }
+                val monochromaticImage = with(bounds) { data.getIconBitmap(context, 0.55f) }
+                renderCircleProgressComplication(canvas, bounds, progress, monochromaticImage)
                 return
             }
 
             ComplicationProvider.StepCount -> {
-                val drawable = ContextCompat.getDrawable(context, R.drawable.step_count)!!
-                icon = drawable.toBitmap(
+                val drawable = ContextCompat.getDrawable(context, R.drawable.step_count)
+                icon = drawable?.toBitmap(
                     (32f / 48f * bounds.height()).toInt(),
                     (32f / 48f * bounds.height()).toInt()
                 )
@@ -54,37 +60,16 @@ class HorizontalComplication(private val context: Context): CustomComplication()
             }
 
             else -> {
-                if (data.monochromaticImage != null) {
-                    val drawable = data.monochromaticImage!!.image.loadDrawable(context)
-                    if (drawable != null) {
-                        val size = (bounds.width().coerceAtMost(bounds.height()).toFloat() * 0.55f).toInt()
-                        icon = drawable.toBitmap(size, size)
-                        iconBounds = Rect(0, 0, size, size)
-                    }
-                }
+                val monochromaticImage = with(bounds) { data.getIconBitmap(context, 0.55f) }
+                icon = monochromaticImage?.icon
+                iconBounds = monochromaticImage?.iconBounds ?: Rect()
             }
-        }
-
-        var prefixLen = 0
-
-        if (isBattery) {
-            prefixLen = 3 - text.length
-            text = text.padStart(3, ' ')
-        }
-
-        if (data.title != null && !data.title!!.isPlaceholder()) {
-            title = data.title!!.getTextAt(context.resources, now).toString().uppercase()
         }
 
         textPaint.textSize = 24F / 48f * bounds.height()
 
         val textBounds = Rect()
-
-        if (isBattery) {
-            textPaint.getTextBounds("000", 0, 3, textBounds)
-        } else {
-            textPaint.getTextBounds(text, 0, text.length, textBounds)
-        }
+        textPaint.getTextBounds(text, 0, text.length, textBounds)
 
         val titleBounds = Rect()
 
@@ -113,10 +98,6 @@ class HorizontalComplication(private val context: Context): CustomComplication()
 
             iconOffsetX += 9f / 156f * bounds.width()
             textOffsetX += 9f / 156f * bounds.width()
-
-            if (isBattery) {
-                iconOffsetX = iconOffsetX.toInt().toFloat()
-            }
         }
 
         if (title != null) {
@@ -135,18 +116,6 @@ class HorizontalComplication(private val context: Context): CustomComplication()
             )
 
             canvas.drawBitmap(icon, iconBounds, dstRect, iconPaint)
-        }
-
-        if (prefixLen > 0) {
-            val prefix = "".padStart(prefixLen, '0')
-            prefixPaint.textSize = textPaint.textSize
-
-            canvas.drawText(
-                prefix,
-                bounds.exactCenterX() - textBounds.width() / 2 + textOffsetX,
-                bounds.exactCenterY() + textBounds.height() / 2,
-                prefixPaint
-            )
         }
 
         canvas.drawText(

@@ -12,6 +12,12 @@ import androidx.wear.watchface.complications.data.MonochromaticImageComplication
 import androidx.wear.watchface.complications.data.ShortTextComplicationData
 import androidx.wear.watchface.complications.data.SmallImageComplicationData
 import com.dotsdev.basewatchface.ui.R
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.ComplicationProvider
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.getIconBitmap
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.getText
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.getTitle
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.isBattery
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.provider
 import java.time.Instant
 
 class VerticalComplication(private val context: Context) : CustomComplication() {
@@ -20,14 +26,12 @@ class VerticalComplication(private val context: Context) : CustomComplication() 
         bounds: Rect,
         data: ShortTextComplicationData,
     ) {
-        val now = Instant.now()
-
-        var text = data.text.getTextAt(context.resources, now).toString().uppercase()
+        var text = data.getText(context)
         if (text == "--") return
 
         var title: String? = null
-        var icon: Bitmap? = null
-        var iconBounds = Rect()
+        val icon: Bitmap?
+        val iconBounds: Rect
         var prefixLen = 0
 
         when (data.provider()) {
@@ -54,19 +58,14 @@ class VerticalComplication(private val context: Context) : CustomComplication() 
             }
 
             else -> {
-                if (data.monochromaticImage != null) {
-                    val drawable = data.monochromaticImage!!.image.loadDrawable(context)
-                    if (drawable != null) {
-                        val size = (bounds.width().coerceAtMost(bounds.height()).toFloat() / 2f).toInt()
-                        icon = drawable.toBitmap(size, size)
-                        iconBounds = Rect(0, 0, size, size)
-                    }
-                }
+                val monochromaticImage = with(bounds) { data.getIconBitmap(context, 0.5f) }
+                icon = monochromaticImage?.icon
+                iconBounds = monochromaticImage?.iconBounds ?: Rect()
             }
         }
 
         if (data.title != null && !data.title!!.isPlaceholder()) {
-            title = data.title!!.getTextAt(context.resources, now).toString().uppercase()
+            title = data.getTitle(context)
         }
 
         if (text.length <= 3) {

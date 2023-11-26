@@ -16,6 +16,8 @@ import androidx.wear.watchface.complications.data.MonochromaticImageComplication
 import androidx.wear.watchface.complications.data.NoDataComplicationData
 import androidx.wear.watchface.complications.data.ShortTextComplicationData
 import androidx.wear.watchface.complications.data.SmallImageComplicationData
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.MonochromaticImageComplication
+import com.dotsdev.basewatchface.ui.wear.utils.extensions.getIconBitmap
 import java.time.ZonedDateTime
 
 abstract class CustomComplication : CanvasComplication {
@@ -111,7 +113,8 @@ abstract class CustomComplication : CanvasComplication {
     open fun renderCircleProgressComplication(
         canvas: Canvas,
         bounds: Rect,
-        textProgress: String,
+        progress: Float,
+        imageComplication: MonochromaticImageComplication?
     ) {
         val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             color = Color.GRAY
@@ -125,10 +128,8 @@ abstract class CustomComplication : CanvasComplication {
             strokeWidth = 5f
         }
 
-        val progress = textProgress.trim().toFloat()
-
-        val centerX = bounds.centerX().toFloat()
-        val centerY = bounds.centerY().toFloat()
+        val centerX = bounds.exactCenterX()
+        val centerY = bounds.exactCenterX()
         val radius = bounds.width() / 5f
 
         // Draw grey circle
@@ -138,10 +139,24 @@ abstract class CustomComplication : CanvasComplication {
         val oval = RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius)
         canvas.drawArc(oval, -90f, 360 * progress / 100, false, remainPaint)
 
+        val icon = imageComplication?.icon
+        val iconBounds = imageComplication?.iconBounds ?: Rect()
+
+//        val dstRect = RectF(
+//            centerX - iconBounds.width() / 2,
+//            centerY - iconBounds.height() / 2 - iconOffsetY,
+//            centerX + iconBounds.width() / 2,
+//            centerY + iconBounds.height() / 2 - iconOffsetY,
+//        )
+//        if (icon != null) {
+//            canvas.drawBitmap(icon, iconBounds, dstRect, iconPaint)
+//        }
+
+
         // Draw text
-        val textWidth = textPaint.measureText(textProgress)
+        val textWidth = textPaint.measureText(progress.toString())
         canvas.drawText(
-            textProgress,
+            progress.toString(),
             centerX - textWidth / 2,
             centerY + textPaint.textSize / 4,
             textPaint.apply { textSize = 20f }

@@ -130,23 +130,3 @@ fun createComplicationSlotManager(
         currentUserStyleRepository
     )
 }
-
-fun ComplicationData.provider(): ComplicationProvider {
-    return ComplicationProvider.of(dataSource?.className?.split(".")?.lastOrNull())
-}
-
-fun ComplicationData.isBattery(): Boolean = this.provider() == ComplicationProvider.Battery
-
-enum class ComplicationProvider(val provider: String) {
-    Battery("BatteryProviderService"),
-    DayAndDate("DayAndDateProviderService"),
-    StepCount("StepsProviderService"),
-    Notification("UnreadNotificationsProviderService"),
-    AppShortcut("LauncherProviderService"),
-    Unknown("Unknown");
-
-    companion object {
-        fun of(provider: String?): ComplicationProvider =
-            entries.find { it.provider == provider } ?: Unknown
-    }
-}
