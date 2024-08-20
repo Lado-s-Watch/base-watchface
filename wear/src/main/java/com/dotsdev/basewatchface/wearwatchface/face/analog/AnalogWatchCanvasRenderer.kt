@@ -66,10 +66,6 @@ class AnalogWatchCanvasRenderer(
     private val scope: CoroutineScope =
         CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
-    // Represents all data needed to render the watch face. All value defaults are constants. Only
-    // three values are changeable by the user (color scheme, ticks being rendered, and length of
-    // the minute arm). Those dynamic values are saved in the watch face APIs and we update those
-    // here (in the renderer) through a Kotlin Flow.
     private var watchFaceData: WatchFaceData = WatchFaceData()
 
     // Converts resource ids into Colors and ComplicationDrawable.
@@ -100,12 +96,8 @@ class AnalogWatchCanvasRenderer(
     private lateinit var minuteHandBorder: Path
     private lateinit var secondHand: Path
 
-    // Changed when setting changes cause a change in the minute hand arm (triggered by user in
-    // updateUserStyle() via userStyleRepository.addUserStyleListener()).
     private var armLengthChangedRecalculateClockHands: Boolean = false
-
-    // Default size of watch face drawing area, that is, a no size rectangle. Will be replaced with
-    // valid dimensions from the system.
+    
     private var currentWatchFaceSize = Rect(0, 0, 0, 0)
 
     init {

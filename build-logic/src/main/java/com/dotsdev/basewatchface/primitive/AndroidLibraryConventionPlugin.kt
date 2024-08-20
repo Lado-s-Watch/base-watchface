@@ -35,7 +35,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 }
 
 internal fun Project.configureCommonAndroid(
-    commonExtension: CommonExtension<*, *, *, *, *>,
+    commonExtension: CommonExtension<*, *, *, *, *, *>,
 ) {
     commonExtension.apply {
         compileSdk = 34

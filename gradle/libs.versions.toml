@@ -1,5 +1,5 @@
 [versions]
-androidGradlePlugin = "8.1.2"
+androidGradlePlugin = "8.5.1"
 # For updating Kotlin and Compose Compiler version, see:
 # https://github.com/JetBrains/compose-multiplatform/blob/master/VERSIONING.md#kotlin-compatibility
 # https://developer.android.com/jetpack/androidx/releases/compose-kotlin?#pre-release_kotlin_compatibility
@@ -47,6 +47,7 @@ androidx-wear-watchface = "1.1.1"
 material = "1.10.0"
 org-jetbrains-kotlin-jvm = "1.8.10"
 playServicesWearable = "18.1.0"
+composeOClock = "0.2.0-SNAPSHOT"
 
 [libraries]
 androidGradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -158,7 +159,9 @@ firebaseCrashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx",
 ktorfitLib = { module = "de.jensklingenberg.ktorfit:ktorfit-lib", version.ref = "ktorfit" }
 ktorfitKsp = { module = "de.jensklingenberg.ktorfit:ktorfit-ksp", version.ref = "ktorfit" }
 
-# Debug
+# OClock
+compose-oclock-core = { group = "org.splitties.compose.oclock", name = "core", version.ref = "composeOClock" }
+compose-oclock-watchface-renderer = { group = "org.splitties.compose.oclock", name = "watchface-renderer", version.ref = "composeOClock" }
 
 # Test
 

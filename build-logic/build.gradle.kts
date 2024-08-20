@@ -10,15 +10,17 @@ repositories {
     google()
     mavenCentral()
     gradlePluginPortal()
+    maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots")
 }
 
-kotlin {
-    jvmToolchain(11)
-}
+// We are using JDK 17 for build process but we are targeting JDK 11 for the app
+// If we use jvmToolchain, we need to install JDK 11
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions.jvmTarget = "17"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
