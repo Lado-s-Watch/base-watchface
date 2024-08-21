@@ -19,6 +19,7 @@ import com.dotsdev.basewatchface.ui.wear.utils.createUserStylesSchema
  */
 class AnalogWatchFaceService : WatchFaceService() {
 
+
     // Used by Watch Face APIs to construct user setting options and repository.
     override fun createUserStyleSchema(): UserStyleSchema =
         createUserStylesSchema(context = applicationContext)

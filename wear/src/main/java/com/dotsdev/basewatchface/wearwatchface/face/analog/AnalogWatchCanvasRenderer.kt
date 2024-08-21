@@ -259,10 +259,6 @@ class AnalogWatchCanvasRenderer(
         zonedDateTime: ZonedDateTime,
         smooth: Boolean
     ) {
-        // Only recalculate bounds (watch face size/surface) has changed or the arm of one of the
-        // clock hands has changed (via user input in the settings).
-        // NOTE: Watch face surface usually only updates one time (when the size of the device is
-        // initially broadcast).
         if (currentWatchFaceSize != bounds || armLengthChangedRecalculateClockHands) {
             armLengthChangedRecalculateClockHands = false
             currentWatchFaceSize = bounds

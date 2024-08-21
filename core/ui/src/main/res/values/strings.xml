@@ -18,6 +18,7 @@
     <string name="app_name" translatable="false">WatchFace</string>
 
     <string name="analog_watch_face_name" translatable="false">B Analog</string>
+    <string name="analog_compose_watch_face_name" translatable="false">B Analog</string>
 
     <!-- Name of watchface style category for selecting the color theme [CHAR LIMIT=20] -->
     <string name="colors_style_setting">Colors</string>
